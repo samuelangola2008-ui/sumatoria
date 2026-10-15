@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salchipapas | Control de ventas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-emoji">🌭🍟</span>
+      <div>
+        <h1>SALCHIPAPAS</h1>
+        <p>Control de ventas</p>
+      </div>
+    </div>
+    <p class="today" id="todayLabel"></p>
+  </header>
+
+  <main class="container">
+
+    <!-- RESUMEN DE CAJA -->
+    <section class="summary" aria-label="Resumen de caja">
+      <article class="card stat stat-main">
+        <span class="stat-label">Ventas del día</span>
+        <strong class="stat-value" id="statTodayMoney">$0</strong>
+      </article>
+      <article class="card stat">
+        <span class="stat-label">Pedidos de hoy</span>
+        <strong class="stat-value" id="statTodayOrders">0</strong>
+      </article>
+      <article class="card stat">
+        <span class="stat-label">Salchipapas vendidas hoy</span>
+        <strong class="stat-value" id="statTodayUnits">0</strong>
+      </article>
+      <article class="card stat">
+        <span class="stat-label">Dinero total vendido</span>
+        <strong class="stat-value" id="statAllMoney">$0</strong>
+        <small id="statAllDetail">0 pedidos · 0 salchipapas</small>
+      </article>
+    </section>
+
+    <!-- REGISTRO DE VENTA -->
+    <section class="card form-card" aria-label="Registrar venta">
+      <h2>Nueva venta</h2>
+
+      <form id="saleForm" novalidate>
+        <div class="field">
+          <label for="customer">Nombre del cliente</label>
+          <input type="text" id="customer" maxlength="60" placeholder="Ej: Juan" autocomplete="off">
+        </div>
+
+        <div class="products-head">
+          <span>Producto</span>
+          <span>Precio unitario</span>
+          <span>Cantidad</span>
+          <span>Subtotal</span>
+        </div>
+        <div id="productRows" class="product-rows"></div>
+        <p class="hint">💡 Puedes cambiar el precio de cada producto directamente; se guarda para las próximas ventas.</p>
+
+        <div class="total-box">
+          <span>Total a pagar</span>
+          <strong id="orderTotal">$0 COP</strong>
+        </div>
+
+        <p class="form-error" id="formError" role="alert"></p>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">✅ Registrar venta</button>
+          <button type="button" class="btn btn-secondary" id="btnClear">🧹 Limpiar formulario</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- LISTA DE VENTAS -->
+    <section class="card list-card" aria-label="Lista de ventas">
+      <div class="list-head">
+        <h2>Lista de ventas</h2>
+        <select id="filter" aria-label="Filtrar ventas">
+          <option value="hoy">Solo hoy</option>
+          <option value="todas">Todas</option>
+        </select>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>Productos comprados</th>
+              <th>Cantidades</th>
+              <th>Total</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="salesBody"></tbody>
+        </table>
+      </div>
+      <p class="empty" id="emptyMsg">Aún no hay ventas registradas. 🍟</p>
+    </section>
+
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="main.js"></script>
+</body>
+</html>
